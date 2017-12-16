@@ -36,39 +36,13 @@ public class PositionController {
         return positionService.readPosition();
     }
 
-    @RequestMapping(method = RequestMethod.GET)
-    @Produces(MediaType.APPLICATION_JSON)
-    public List<Position> readPositionFromTerminal(@RequestParam("terminalId") String terminalId , @RequestParam("startDate")String startDate, @RequestParam("endDate")String endDate) throws ParseException {
-        LocalDateTimeConverter localDateTimeConverter = new LocalDateTimeConverter("yyyy-MM-dd HH:mm:ss");
-
-        LocalDateTime sdate = localDateTimeConverter.convert(startDate);
-        LocalDateTime edate = localDateTimeConverter.convert(endDate);
-
-        Date stDate = new Date(Timestamp.valueOf(sdate).getTime());
-        Date enDate = new Date(Timestamp.valueOf(edate).getTime());
-
-        return positionService.readPositionFromTerminal(terminalId,stDate,enDate);
-    }
-
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     @Produces(MediaType.APPLICATION_JSON)
     public Position createPosition(@RequestBody Position p) {
         return positionService.save(p);
     }
 
-    @RequestMapping(value = "/update", method = RequestMethod.PUT)
-    @Produces(MediaType.APPLICATION_JSON)
-    public void  updatePosition(@RequestBody Position p) {
-        if(p.getId() == null)
-            throw new IllegalArgumentException("The id is mandatory for UPDATE!");
-        positionService.save(p);
-    }
+    
 
-
-    @RequestMapping(value = "/delete/{id}",method = RequestMethod.DELETE)
-    @Produces(MediaType.APPLICATION_JSON)
-    public void delete(@PathVariable Long  id) {
-        positionService.deletePositionService(id);
-    }
 
 }

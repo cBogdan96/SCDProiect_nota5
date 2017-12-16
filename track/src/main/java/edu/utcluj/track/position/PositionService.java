@@ -18,10 +18,6 @@ public class PositionService {
 
     public List<Position> readPosition() { return positionRepository.findAll(); }
 
-    public List<Position> readPositionFromTerminal(String terminalId, Date startDate, Date endDate) { return positionRepository.findByTerminalIdAndStartDateAndEndDate(terminalId,startDate,endDate); }
-
-    public Position save(Position p){return positionRepository.save(p);}
-
     public void deletePositionService(Long id){
         positionRepository.delete(id);}
 }
