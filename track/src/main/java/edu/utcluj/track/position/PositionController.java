@@ -36,11 +36,7 @@ public class PositionController {
         return positionService.readPosition();
     }
 
-    @RequestMapping(value = "/create", method = RequestMethod.POST)
-    @Produces(MediaType.APPLICATION_JSON)
-    public Position createPosition(@RequestBody Position p) {
-        return positionService.save(p);
-    }
+
 
     
 
